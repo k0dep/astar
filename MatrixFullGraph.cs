@@ -4,9 +4,9 @@ using UnityEngine;
 namespace AStar
 {
     /// <summary>
-    ///     Graph representation
+    ///     Graph representation using full linked transition matrix
     /// </summary>
-    public class Graph : IGraph
+    public class MatrixFullGraph : IGraph
     {
         /// <summary>
         ///     Transition matrix of graph
@@ -24,7 +24,7 @@ namespace AStar
         public int Height { get; private set; }
 
 
-        public Graph(uint height, uint width, float defaultCost = 0f)
+        public MatrixFullGraph(int height, int width, float defaultCost = 0f)
         {
             if(height <= 0)
             {
@@ -36,6 +36,9 @@ namespace AStar
                 throw new ArgumentException("value should be more than zero", nameof(width));
             }
 
+            Width = width;
+            Height = height;
+            
             var nodeCount = height * width;
 
             Matrix = new float[nodeCount, nodeCount];
@@ -78,19 +81,19 @@ namespace AStar
         /// <summary>
         ///     Convert vector node address to flat representation
         /// </summary>
-        private int MapToFlat(Vector2Int vector) => vector.x * Width + vector.y;
+        private int MapToFlat(Vector2Int vector) =>  vector.y * Width + vector.x;
 
         /// <summary>
         ///     Assert an node address
         /// </summary>
         private void AssertNodeAddress(Vector2Int vector, string name)
         {
-            if(vector.x <= 0 || vector.y <= 0)
+            if (vector.x < 0 || vector.y < 0)
             {
-                throw new ArgumentException("value should be more than zero ", name);
+                throw new ArgumentException("value should be more or equal than zero", name);
             }
-            
-            if(vector.x >= Width || vector.y >= Height)
+
+            if (vector.x >= Width || vector.y >= Height)
             {
                 throw new ArgumentException("value should be less than graph bounds", name);
             }
