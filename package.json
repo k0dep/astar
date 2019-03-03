@@ -1,0 +1,12 @@
+{
+  "name": "astar",
+  "displayName": "A*",
+  "version": "0.1.0",
+  "unity": "2018.3",
+  "description": "AStar unity3d implementation",
+  "keywords": [
+    "pathfinding",
+    "astar",
+    "a*"
+  ]
+}
