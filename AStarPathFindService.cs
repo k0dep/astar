@@ -88,7 +88,7 @@ namespace AStar
                     if (!costsFar.ContainsKey(neighbor) || newCost < costsFar[neighbor])
                     {
                         costsFar[neighbor] = newCost;
-                        int priority = (int) (newCost + Heuristic(options.Start, neighbor));
+                        var priority = (newCost + Heuristic(options.Start, neighbor));
                         frontier.Add(priority, neighbor);
                         cameFrom[neighbor] = current;
                     }
@@ -103,7 +103,7 @@ namespace AStar
         /// </summary>
         private float Heuristic(Vector2Int from, Vector2Int to)
         {
-            return Math.Max(Math.Abs(from.x - to.x), Math.Abs(from.y - to.y));
+            return Vector2Int.Distance(from, to);Math.Max(Math.Abs(from.x - to.x), Math.Abs(from.y - to.y));
         }
     }
 }

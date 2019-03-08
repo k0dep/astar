@@ -10,7 +10,7 @@ namespace AStar
     {
         internal class Node : IComparable<Node>
         {
-            public int Priority;
+            public float Priority;
             public T O;
 
             public int CompareTo(Node other) => Priority.CompareTo(other.Priority);
@@ -18,7 +18,7 @@ namespace AStar
 
         private MinHeap<Node> minHeap = new MinHeap<Node>();
 
-        public void Add(int priority, T element) => minHeap.Add(new Node() {Priority = priority, O = element});
+        public void Add(float priority, T element) => minHeap.Add(new Node() {Priority = priority, O = element});
 
         public T RemoveMin() => minHeap.RemoveMin().O;
 
