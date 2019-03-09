@@ -6,8 +6,7 @@
  ```json
 {
   "dependencies": {
-    "astar": "https://github.com/k0dep/astar.git#0.1.0",
-    ...
+    "astar": "https://github.com/k0dep/astar.git#0.1.0"
   }
 }
 ```
